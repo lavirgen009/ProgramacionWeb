@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online</title>
+</head>
+<body>
+    <h1>Bienvenido a mi tienda online</h1>
+    <h2>Productos</h2>
+    
+    <div>
+        <ul>
+            <% productos.forEach(producto => { %>
+                <li>
+                    <strong><%= producto.nombre %></strong><br>
+                    <%= producto.descripcion %><br>
+                    Precio: $<%= producto.precio %><br>
+                    Stock: <%= producto.stock %> unidades disponibles<br>
+                    
+                    <!-- Formulario para agregar al carrito -->
+                    <form action="/agregar-al-carrito" method="POST">
+                        <input type="hidden" name="idProducto" value="<%= producto.id %>">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" name="cantidad" value="1" min="1" max="<%= producto.stock %>">
+                        <button type="submit">Agregar al carrito</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <br><br>
+    <a href="/carrito">Ver carrito</a>
+</body>
+</html>

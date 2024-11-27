@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+
+    <% if (carrito.length > 0) { %>
+        <ul>
+            <% productos.forEach(producto => { %>
+                <% const itemCarrito = carrito.find(item => item.idProducto === producto.id); %>
+                <li>
+                    <strong><%= producto.nombre %></strong><br>
+                    Cantidad: <%= itemCarrito.cantidad %><br>
+                    Precio unitario: $<%= producto.precio %><br>
+                    Subtotal: $<%= producto.precio * itemCarrito.cantidad %><br>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No hay productos en el carrito.</p>
+    <% } %>
+
+    <br>
+    <a href="/">Seguir comprando</a>
+</body>
+</html>
